@@ -60,3 +60,21 @@
 .list-item li:nth-child(7) {
     transform: rotateY(calc(360deg/7*6)) translateZ(calc(340px*7/3.14/2));
 }
+
+.btn-wrap .btn{
+    height: 100%;
+    width: calc((100% - var(--size)) / 2);
+    position: fixed;
+    background-color: transparent;
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    bottom: 0;
+    border: none;
+    opacity: 0.2;
+}
+
+.btn img{width: 10%;}
+
+.btn:hover{opacity: 1;}
+
+.btn-wrap .prev-btn{left: 0;}
+.btn-wrap .next-btn{right: 0;}
