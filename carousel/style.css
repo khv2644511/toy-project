@@ -6,6 +6,24 @@
     perspective: 1600px;
 }
 
+h2 {
+    width: fit-content;
+    margin: 50px auto;
+    font-size: 40px;
+    animation-duration: 3s; animation-name: rainbowLink; animation-iteration-count: infinite; 
+}
+
+@keyframes rainbowLink {     
+ 0% { color: #ff2a2a; }
+ 15% { color: #ff7a2a; }
+ 30% { color: #ffc52a; }
+ 45% { color: #43ff2a; }
+ 60% { color: #2a89ff; }
+ 75% { color: #202082; }
+ 90% { color: #6b2aff; } 
+ 100% { color: #e82aff; }
+}
+
 .list-item {
     position: fixed;
     width: 340px;
@@ -63,18 +81,46 @@
 
 .btn-wrap .btn{
     height: 100%;
-    width: calc((100% - var(--size)) / 2);
+    width: 200px;
+    /* width: calc((100% - var(--size)) / 2); */
     position: fixed;
     background-color: transparent;
     /* background-color: rgba(0, 0, 0, 0.1); */
     bottom: 0;
     border: none;
-    opacity: 0.2;
+    opacity: 0.3;
 }
 
-.btn img{width: 10%;}
+.btn img{width: 30%;}
 
 .btn:hover{opacity: 1;}
 
 .btn-wrap .prev-btn{left: 0;}
 .btn-wrap .next-btn{right: 0;}
+
+.container .item {
+    /* 카드의 뒷면을 안보이게 처리-카드가 뒤집히면 뒷면이 안보임 */
+    backface-visibility: hidden; 
+    transition: 1s;
+    position: relative;
+}
+
+.container .item.front {
+    position: absolute;
+    /* transform: rotateY(0deg); 
+    //명시적으로 기본값 설정, 없어도 됨 */
+  }
+
+  .container:hover .item.front {
+    transform: rotateY(180deg) scale(1.5);
+  }
+
+  .container .item.back {
+    position: absolute;
+    transform: rotateY(-180deg);
+    /* y축을 중심으로 -180도 회전 */
+  }
+
+  .container:hover .item.back {
+    transform: rotateY(0deg)scale(1.5)
+  }

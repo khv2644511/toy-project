@@ -11,28 +11,49 @@
 
   <body>
     <article id="app">
-      <h2>I Love iPhone</h2>
+      <h2>Show these colorful iPhone</h2>
       <ul class="list-item">
-        <li>
-          <img src="./assets/back_black.jpg" alt="" />
+        <li class="on">
+          <div class="container">
+            <img class="item front" src="./assets/font_white.jpg" alt="" />
+            <img class="item back" src="./assets/back_white.jpg" alt="" />
+          </div>
+        </li>
+        <li class="on1">
+          <div class="container">
+            <img class="item front" src="./assets/front_blue.jpg" alt="" />
+            <img class="item back" src="./assets/back_blue.jpg" alt="" />
+          </div>
         </li>
         <li>
-          <img src="./assets/back_white.jpg" alt="" />
+          <div class="container">
+            <img class="item front" src="./assets/front_purple.jpg" alt="" />
+            <img class="item back" src="./assets/back_purple.png" alt="" />
+          </div>
         </li>
         <li>
-          <img src="./assets/back_red.jpg" alt="" />
+          <div class="container">
+            <img class="item front" src="./assets/front_black.jpg" alt="" />
+            <img class="item back" src="./assets/back_black.jpg" alt="" />
+          </div>
         </li>
         <li>
-          <img src="./assets/back_blue.jpg" alt="" />
+          <div class="container">
+            <img class="item front" src="./assets/front_red.jpg" alt="" />
+            <img class="item back" src="./assets/back_red.jpg" alt="" />
+          </div>
         </li>
         <li>
-          <img src="./assets/back_black.jpg" alt="" />
+          <div class="container">
+            <img class="item front" src="./assets/front_blue.jpg" alt="" />
+            <img class="item back" src="./assets/back_blue.jpg" alt="" />
+          </div>
         </li>
         <li>
-          <img src="./assets/back_white.jpg" alt="" />
-        </li>
-        <li>
-          <img src="./assets/back_red.jpg" alt="" />
+          <div class="container">
+            <img class="item front" src="./assets/front_black.jpg" alt="" />
+            <img class="item back" src="./assets/back_black.jpg" alt="" />
+          </div>
         </li>
       </ul>
     </article>
@@ -46,21 +67,6 @@
       </button>
     </div>
 
-    <script>
-      const center = document.querySelector(".list-item");
-      const items = document.querySelectorAll(".list-item li");
-      const angle = 360 / items.length;
-      let currAngle = 0;
-
-      document.addEventListener("click", function (event) {
-        if (window.innerWidth / 2 < event.clientX) {
-          currAngle -= angle;
-        } else {
-          currAngle += angle;
-        }
-
-        center.style.transform = `translate(-50%, -50%) rotateY(${currAngle}deg)`;
-      });
-    </script>
+    <script src="./main.js"></script>
   </body>
 </html>
