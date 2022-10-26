@@ -4,3 +4,6 @@
 
 ## TodoList
 localStorage를 사용해서 새로고침을 해도 전에 작성한 Todolist가 존재한다.
+
+## 잔디깎기
+window.requestAnimationFrame(play) 사용
