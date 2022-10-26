@@ -6,33 +6,6 @@ const listTodo = main.querySelector(".list_todo");
 // 할 일 추가 이벤트
 addBtn.addEventListener("click", createListItem);
 
-// 경고 메세지 생성
-const message = document.createElement("strong");
-message.style.display = "none";
-message.classList.add("txt_invalid");
-main.appendChild(message);
-userTask.addEventListener("input", () => {
-  message.style.display = "none";
-});
-
-// 다운로드 버튼 생성
-const downloadBtn = document.createElement("button");
-downloadBtn.classList.add("btn");
-downloadBtn.textContent = "리스트 다운로드";
-main.appendChild(downloadBtn);
-downloadBtn.addEventListener("click", downloadFile);
-
-// 투두를 저장할 배열
-const tasks = JSON.parse(localStorage.getItem("tasklist")) || [];
-
-// 초기 화면에서 로컬스토리지에 저장되어있는 데이터를 가지고 목록을 생성합니다.
-if (tasks.length > 0) {
-  tasks.forEach((task) => {
-    genItem(task.val, task.checked);
-  });
-  showDownload();
-}
-
 function createListItem() {
   const inpVal = userTask.value;
 
@@ -58,6 +31,21 @@ function createListItem() {
     errorMsg("내용을 작성해주세요");
   }
 }
+// 경고 메세지 생성
+const message = document.createElement("strong");
+message.style.display = "none";
+message.classList.add("txt_invalid");
+main.appendChild(message);
+userTask.addEventListener("input", () => {
+  message.style.display = "none";
+});
+
+// 경고 메세지 활성화 함수
+function errorMsg(msg) {
+  message.style.display = "block";
+  message.textContent = msg;
+  userTask.focus();
+}
 
 function genItem(val, complete) {
   const li = document.createElement("li");
@@ -78,6 +66,29 @@ function genItem(val, complete) {
     buildTasks();
   });
 
+  // 투두를 저장할 배열
+  const tasks = JSON.parse(localStorage.getItem("tasklist")) || [];
+
+  //localStorage에 할일 목록을 저장하는 함수
+  function saveTasks() {
+    localStorage.setItem("tasklist", JSON.stringify(tasks));
+  }
+
+  // 초기 화면에서 로컬스토리지에 저장되어있는 데이터를 가지고 목록을 생성합니다.
+  if (tasks.length > 0) {
+    tasks.forEach((task) => {
+      genItem(task.val, task.checked);
+    });
+    showDownload();
+  }
+
+  // 다운로드 버튼 생성
+  const downloadBtn = document.createElement("button");
+  downloadBtn.classList.add("btn");
+  downloadBtn.textContent = "리스트 다운로드";
+  main.appendChild(downloadBtn);
+  downloadBtn.addEventListener("click", downloadFile);
+
   // 삭제버튼 만들기
   const btn = document.createElement("button");
   btn.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -92,11 +103,6 @@ function genItem(val, complete) {
     // 다운로드 버튼 노출 함수
     showDownload();
   });
-}
-
-//localStorage에 할일 목록을 저장하는 함수
-function saveTasks() {
-  localStorage.setItem("tasklist", JSON.stringify(tasks));
 }
 
 // 할일 정보를 업데이트 하는 함수. 할일을 클릭했을 때, 혹은 할일을 제거했을 때
@@ -132,13 +138,7 @@ function showDownload() {
   }
 }
 
-// 경고 메세지 활성화 함수
-function errorMsg(msg) {
-  message.style.display = "block";
-  message.textContent = msg;
-  userTask.focus();
-}
-
+// 할일 리스트 다운로드 함수
 function downloadFile() {
   let temp = "<나의 할일 목록>\n\n";
 
