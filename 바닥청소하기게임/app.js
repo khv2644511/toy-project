@@ -1,3 +1,5 @@
+/** @format */
+
 const target = document.querySelector(".target");
 const body = document.querySelector("body");
 let posx = 0;
@@ -32,9 +34,9 @@ function cleanY(event) {
   //   console.log(`현재 창기준 x좌표 : ${rect.x}px y좌표 : ${rect.y}px`);
   let rect = target.getBoundingClientRect();
   const clean = document.querySelector(".clean");
-  const height = window.innerHeight;
+  // const height = window.innerHeight;
   console.log(rect);
-  clean.style.transform = `translate(${posx}px,0px)`;
+  clean.style.transform = `translate(${posx}px,-${posy}px)`;
   clean.style.width = `calc(90px)`;
   clean.style.height = `calc(90px + ${rect.y}px)`;
 }
